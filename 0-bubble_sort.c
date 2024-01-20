@@ -1,22 +1,6 @@
 #include "sort.h"
 
 /**
- * swap_ing - swap element inside the array
- * @a: the first element 
- * @b: the second element
- *
- */
-void swap_ing(int *a, int *b)
-{
-	int temp;
-
-	temp = *a;
-	*a = *b;
-	*b = temp;
-}
-
-
-/**
  * bubble_sort - The function to arrange number
  * @array: the array to be aranging it
  * @size: The size of array
@@ -25,17 +9,24 @@ void swap_ing(int *a, int *b)
 
 void bubble_sort(int *array, size_t size)
 {
-	size_t i, j;
+	size_t i = 0, j = 1;
+	int swap;
 
-	for (i = 0; i < size - 1; i++)
+	while (array && i < size)
 	{
-		for (j = 0; j < size - i - 1; j++)
+		j = 1;
+		while (j < size)
 		{
-			if (array[j] > array[j + 1])
+			if (array[j] < array[j - 1])
 			{
-				swap_ing(&array[j], &array[j + 1]);
+				swap = array[j];
+				array[j] = array[j - 1];
+				array[j - 1] = swap;
+			
+				print_array(array, size);
 			}
+			j++;
 		}
-		print_array(array, size);
+		i++;
 	}
 }
